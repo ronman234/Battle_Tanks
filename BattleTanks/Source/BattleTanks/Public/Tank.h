@@ -42,19 +42,19 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Fire();
 
-	UPROPERTY(EditAnywhere, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBluePrint;
+	
 
-private:
+protected:
 	UTankBarrel* Barrel = nullptr; // local barrel reference
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ReloadTime = 3;
 	
-	double LastFireTime = 0;
+	float LastFireTime = 0;
 
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000.f;
 
-
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBluePrint;
 };

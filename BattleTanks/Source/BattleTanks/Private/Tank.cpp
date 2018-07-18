@@ -31,16 +31,17 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ATank::Fire()
 {
-	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTime;
 
-	if (Barrel && isReloaded)
+	bool isReloaded = ((GetWorld()->GetTimeSeconds()) - LastFireTime) > ReloadTime;
+
+	if (Barrel && ProjectileBluePrint && isReloaded)
 	{
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>
 			(ProjectileBluePrint, Barrel->GetSocketLocation(FName("Projectile")), Barrel->GetSocketRotation(FName("Projectile")));
 
 		Projectile->LaunchProjectile(LaunchSpeed);
 
-		LastFireTime = FPlatformTime::Seconds();
+		LastFireTime = GetWorld()->GetTimeSeconds();
 	}
 }
 

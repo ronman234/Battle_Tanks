@@ -26,7 +26,7 @@ public:
 	
 	void AimAt(FVector WorldSpaceAim, float LaunchSpeed);
 
-private:
+protected:
 	UTankBarrel* Barrel = nullptr;
 
 	UTankTurretComponent* Turret = nullptr;
