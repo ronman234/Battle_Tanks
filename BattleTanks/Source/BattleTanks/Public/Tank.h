@@ -11,6 +11,8 @@ class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurretComponent;
 class AProjectile;
+class UTankTrack;
+class UTankMovementComponent;
 
 UCLASS()
 class BATTLETANKS_API ATank : public APawn
@@ -27,6 +29,9 @@ protected:
 
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
+
 public:	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -40,9 +45,7 @@ public:
 	void SetTurretReference(UTankTurretComponent* TurretToSet);
 
 	UFUNCTION(BlueprintCallable)
-	void Fire();
-
-	
+	void Fire();	
 
 protected:
 	UTankBarrel* Barrel = nullptr; // local barrel reference
