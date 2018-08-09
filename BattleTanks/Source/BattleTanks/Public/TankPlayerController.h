@@ -28,8 +28,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	float LineTraceRange = 1000000;
 
-	ATank* GetControlledTank() const;
-
 	void AimTowardsCrosshair();
 
 	bool GetSightRayHitLocation(FVector &OutHitLocation) const;
@@ -43,5 +41,7 @@ protected:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	ATank* GetControlledTank() const;
 	
 };
