@@ -24,6 +24,13 @@ class BATTLETANKS_API UTankAimingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
+private:
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
+	virtual void BeginPlay() override;
+
+	bool IsBarrelMoving();
+
 public:	
 	// Sets default values for this component's properties
 	UTankAimingComponent();
@@ -50,10 +57,14 @@ protected:
 	float LaunchSpeed = 4000;
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
-		float ReloadTime = 3;
+	float ReloadTime = 3;
 
 	float LastFireTime = 0;
 
+	FVector AimDirection;
+
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBluePrint;
+
+
 };
