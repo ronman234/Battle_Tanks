@@ -81,7 +81,14 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 
 	//move barrel the right amount this frame
 	Barrel->Elevate(DeltaRotator.Pitch);
-	Turret->Rotate(DeltaRotator.Yaw);
+	if (DeltaRotator.Yaw < 180)
+	{
+		Turret->Rotate(DeltaRotator.Yaw);
+	}
+	else
+	{
+		Turret->Rotate(-DeltaRotator.Yaw);
+	}
 }
 
 void UTankAimingComponent::Fire()
@@ -97,4 +104,9 @@ void UTankAimingComponent::Fire()
 
 		LastFireTime = GetWorld()->GetTimeSeconds();
 	}
+}
+
+EFiringState UTankAimingComponent::GetFiringState() const
+{
+	return FiringStatus;
 }

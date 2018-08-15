@@ -43,6 +43,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Fire();
 
+	EFiringState GetFiringState() const;
+
 protected:
 	UTankBarrel* Barrel = nullptr;
 

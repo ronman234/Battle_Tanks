@@ -32,5 +32,7 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	float MaxTrackDrivingForce = 4000000; //assume 40 ton tank and 1g acceleration
 	
+	void DriveTrack();
 
+	float CurrentThrottle = 0;
 };
