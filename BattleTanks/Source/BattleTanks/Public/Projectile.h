@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Engine/World.h"
+#include "Runtime/Engine/Classes/Particles/ParticleSystemComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
@@ -28,6 +29,19 @@ public:
 	void LaunchProjectile(float LaunchSpeed);
 
 private:
-
 	UProjectileMovementComponent* ProjectileMovement = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = Setup)
+	UStaticMeshComponent* CollisionMesh = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = Setup)
+	UParticleSystemComponent* LaunchBlast = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = Setup)
+	UParticleSystemComponent* ImpactBlast = nullptr;
+
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
+	float DestroyDelay = 2;
 };
